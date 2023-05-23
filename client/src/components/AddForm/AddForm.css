@@ -1,0 +1,9 @@
+.add-form-button {
+  height: 50px;
+  width: 90%;
+  border: 5px solid rgba(111, 16, 235, 0.333);
+  border-radius: 15px;
+  padding: 10px;
+  box-sizing: border-box;
+  margin: 10px;
+}

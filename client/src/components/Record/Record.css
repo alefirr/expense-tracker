@@ -1,0 +1,9 @@
+.record {
+  height: 60px;
+  width: 100%;
+  border-radius: 10px;
+  border: 2px solid rgba(111, 16, 235, 0.333);
+  padding: 10px;
+  margin: 10px;
+  box-sizing: border-box;
+}

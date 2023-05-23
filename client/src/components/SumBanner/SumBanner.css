@@ -1,0 +1,8 @@
+.sum-banner {
+  height: 35%;
+  width: 90%;
+  border-radius: 40px;
+  border: 5px solid rgba(111, 16, 235, 0.333);
+  padding: 30px;
+  box-sizing: border-box;
+}
