@@ -13,13 +13,17 @@ const request = async (
     method,
     url: `${URL}/${entity}${id ? `/${id}` : ''}`,
     data,
-  }).then(res => res.data);
+  })
+    .then(res => res.data)
+    .catch(err => {
+      console.log(err);
+    });
 
-const addData = async (entity: Entity, data: any) =>
-  await request('post', entity, undefined, data);
+const addData = (entity: Entity, data: any) =>
+  request('post', entity, undefined, data);
 
-const updateData = async (entity: Entity, id: string, data: any) =>
-  await request('put', entity, id, data);
+const updateData = (entity: Entity, id: string, data: any) =>
+  request('put', entity, id, data);
 
 const getData = (entity: Entity, id?: string) => request('get', entity, id);
 
