@@ -1,9 +1,22 @@
 .record {
-  height: 60px;
   width: 100%;
   border-radius: 10px;
   border: 2px solid rgba(111, 16, 235, 0.333);
   padding: 10px;
   margin: 10px;
   box-sizing: border-box;
+  position: relative;
+}
+
+ul {
+  list-style-type: none;
+  padding: 0 0 0 10px;
+  margin: 12px 0 5px;
+}
+
+.price {
+  position: absolute;
+  top: 10px;
+  right: 12px;
+  font-weight: 700;
 }

@@ -1,7 +1,8 @@
 import axios from 'axios';
 import { type Entity } from './types';
+import { createContext } from 'react';
 
-const URL = 'https://localhost:3002/api';
+const URL = 'http://localhost:3002/api';
 
 const request = async (
   method: string,
@@ -11,7 +12,7 @@ const request = async (
 ) =>
   axios({
     method,
-    url: `${URL}/${entity}${id ? `/${id}` : ''}`,
+    url: `${URL}/${entity}/${id ?? ''}`,
     data,
   })
     .then(res => res.data)
@@ -30,4 +31,8 @@ const getData = (entity: Entity, id?: string) => request('get', entity, id);
 const deleteData = (entity: Entity, id: string) =>
   request('delete', entity, id);
 
-export { addData, updateData, getData, deleteData };
+type AppContextType = Partial<Record<Entity, Array<Record<string, any>>>>;
+
+const AppContext = createContext<AppContextType>({});
+
+export { addData, updateData, getData, deleteData, AppContext };

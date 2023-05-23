@@ -8,4 +8,5 @@ const RecordSchema = new Schema({
   place: { type: Schema.Types.ObjectId, ref: 'Place' },
   user: { type: Schema.Types.ObjectId, ref: 'User' },
 });
+
 export default mongoose.model('Record', RecordSchema);

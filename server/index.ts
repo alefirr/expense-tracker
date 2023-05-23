@@ -6,7 +6,7 @@ import placeRoutes from './src/routes/place';
 import userRoutes from './src/routes/user';
 import recordRoutes from './src/routes/record';
 
-// import cors from 'cors';
+import cors from 'cors';
 // import fileUpload from 'express-fileupload';
 
 const app: Express = express();
@@ -19,7 +19,7 @@ const DB_PASSWORD = process.env.DB_PASSWORD;
 const DB_NAME = process.env.DB_NAME;
 // DB Connection
 
-// app.use(cors());
+app.use(cors());
 // app.use(fileUpload());
 app.use(express.json());
 app.use(express.static('uploads'));
