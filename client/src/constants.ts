@@ -1,5 +1,5 @@
-import { type DataInputProps } from './components/Modal/DataInput';
 import { Entity } from './types';
+import { type DataInputProps } from './components/Modal/DataInput';
 
 export const ENTITIES = Object.values(Entity) as Entity[];
 

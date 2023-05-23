@@ -1,5 +1,5 @@
 import Select from 'react-select';
-import './DataInput.css';
+// import './DataInput.css';
 import React, { useContext, type FC } from 'react';
 import { AppContext } from '../../api';
 import { type Entity } from '../../types';
@@ -103,7 +103,7 @@ const MAP_ID_TO_INPUT_COMP = {
 export interface DataInputProps {
   id: string;
   type: 'text' | 'number' | 'textarea' | 'select' | 'date';
-  label: string;
+  label?: string;
   value: string | number;
   setData: (data: any) => void;
   // removeError: () => void;
@@ -122,6 +122,8 @@ export const DataInput: FC<DataInputProps> = ({
 }) => {
   const InputComp = MAP_ID_TO_INPUT_COMP[type];
 
+  console.log('inputData', value);
+
   // const style = isError ? { border: '2px solid red' } : {};
 
   const setter = (val: string | number) => {
@@ -131,7 +133,7 @@ export const DataInput: FC<DataInputProps> = ({
 
   return (
     <div className="input">
-      <label>{label}</label>
+      <label>{label || `Enter ${dataId}`}</label>
       <InputComp value={value} setter={setter} id={dataId} {...inputData} />
     </div>
   );

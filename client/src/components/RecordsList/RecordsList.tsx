@@ -9,7 +9,7 @@ import { Entity } from '../../types';
 export const RecordsList = () => {
   const { record: records } = useContext(AppContext);
 
-  const [recordInEdit, setRecordInEdit] = React.useState<string | null>();
+  const [recordInEdit, setRecordInEdit] = React.useState<string | null>(null);
 
   return (
     <div className="record-list-container">
@@ -26,7 +26,7 @@ export const RecordsList = () => {
         ))}
       </div>
       <Modal
-        isEdit
+        inEditId={recordInEdit}
         entity={recordInEdit ? Entity.Record : null}
         closeModal={() => {
           setRecordInEdit(null);
