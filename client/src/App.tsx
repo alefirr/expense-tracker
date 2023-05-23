@@ -4,25 +4,27 @@ import { MainPage } from './components';
 import { ENTITIES } from './types';
 
 const App = () => {
-  const [context, setContext] = React.useState({});
+  const [context, setContext] = React.useState({ mapById: {} });
 
   useEffect(() => {
     ENTITIES.forEach(entity => {
       getData(entity).then(data => {
         setContext(prev => {
-          if (entity !== 'record') {
-            data = data.reduce(
-              (acc: any, item: any) => ({
-                ...acc,
-                [item._id]: item,
-              }),
-              {}
-            );
-          }
+          const entityById = data.reduce(
+            (acc: any, item: any) => ({
+              ...acc,
+              [item._id]: item,
+            }),
+            {}
+          );
 
           return {
             ...prev,
             [entity]: data,
+            mapById: {
+              ...prev.mapById,
+              [entity]: entityById,
+            },
           };
         });
       });

@@ -31,8 +31,10 @@ const getData = (entity: Entity, id?: string) => request('get', entity, id);
 const deleteData = (entity: Entity, id: string) =>
   request('delete', entity, id);
 
-type AppContextType = Partial<Record<Entity, Array<Record<string, any>>>>;
+type AppContextType = Partial<Record<Entity, Array<Record<string, any>>>> & {
+  mapById: Partial<Record<string, any>>;
+};
 
-const AppContext = createContext<AppContextType>({});
+const AppContext = createContext<AppContextType>({ mapById: {} });
 
 export { addData, updateData, getData, deleteData, AppContext };

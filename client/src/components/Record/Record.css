@@ -11,7 +11,11 @@
 ul {
   list-style-type: none;
   padding: 0 0 0 10px;
-  margin: 12px 0 5px;
+  margin: 12px 0 8px;
+}
+
+button {
+  margin: 3px;
 }
 
 .price {
