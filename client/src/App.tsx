@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { AppContext, getData } from './api';
 import { MainPage } from './components';
-import { ENTITIES } from './types';
+import { ENTITIES } from './constants';
 
 const App = () => {
   const [context, setContext] = React.useState({ mapById: {} });

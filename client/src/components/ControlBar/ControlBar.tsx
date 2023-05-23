@@ -1,7 +1,8 @@
 import React, { type FC } from 'react';
 import './ControlBar.css';
 import { AddForm } from '../AddForm';
-import { ENTITIES, type Entity } from '../../types';
+import { ENTITIES } from '../../constants';
+import type { Entity } from '../../types';
 
 interface Props {
   openModal: (entity: Entity) => void;

@@ -4,5 +4,3 @@ export enum Entity {
   User = 'user',
   Place = 'place',
 }
-
-export const ENTITIES = Object.values(Entity) as Entity[];

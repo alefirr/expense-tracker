@@ -1,14 +1,16 @@
 import Select from 'react-select';
 import './DataInput.css';
-import React, { type FC } from 'react';
+import React, { useContext, type FC } from 'react';
+import { AppContext } from '../../api';
+import { type Entity } from '../../types';
 
 interface InputData {
   value: string | number;
   setter: (value: string | number) => void;
   max?: number;
   min?: number;
-  options?: any[];
   style?: any;
+  id?: string;
 }
 
 const TextInput: FC<InputData> = ({ setter, max, value = '', ...props }) => (
@@ -61,22 +63,18 @@ const TextAreaInput: FC<InputData> = ({
   />
 );
 
-const SelectInput: FC<InputData> = ({
-  value,
-  options,
-  setter,
-  style,
-  ...props
-}) => {
-  const optionsList = options!.map(({ _id, name }) => ({
+const SelectInput: FC<InputData> = ({ id, value, setter, style, ...props }) => {
+  const context = useContext(AppContext);
+
+  const optionsList = context[id as Entity]?.map(({ _id, name }) => ({
     value: _id,
     label: name,
   }));
 
   return (
     <Select
-      options={options}
-      value={optionsList.find(({ value: val }) => val === value)}
+      options={optionsList}
+      value={optionsList?.find(({ value: val }) => val === value)}
       onChange={e => {
         if (e) setter(e.value);
       }}
@@ -102,7 +100,7 @@ const MAP_ID_TO_INPUT_COMP = {
   date: DateInput,
 };
 
-interface Props {
+export interface DataInputProps {
   id: string;
   type: 'text' | 'number' | 'textarea' | 'select' | 'date';
   label: string;
@@ -112,7 +110,7 @@ interface Props {
   // isError: boolean;
 }
 
-export const DataInput: FC<Props> = ({
+export const DataInput: FC<DataInputProps> = ({
   id: dataId,
   type,
   label,
@@ -134,7 +132,7 @@ export const DataInput: FC<Props> = ({
   return (
     <div className="input">
       <label>{label}</label>
-      <InputComp value={value} setter={setter} {...inputData} />
+      <InputComp value={value} setter={setter} id={dataId} {...inputData} />
     </div>
   );
 };
