@@ -33,14 +33,22 @@ export const addRecord = async (req: Request, res: Response) => {
 
 export const updateRecord = async (req: Request, res: Response) => {
   try {
-    const { name, id } = req.body;
-    const record = await Record.findById(id);
+    const { name, _id, date, sum, category, place, user } = req.body;
+
+    const record = await Record.findById(_id);
+
     if (record) {
       record.name = name;
+      record.date = date;
+      record.sum = sum;
+      record.category = category;
+      record.place = place;
+      record.user = user;
 
       await record.save();
       return res.json(record);
     }
+
     res.status(400).json({ message: 'No such record' });
   } catch (e) {
     res.status(400).json({

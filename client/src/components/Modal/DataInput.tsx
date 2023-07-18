@@ -1,5 +1,5 @@
 import Select from 'react-select';
-// import './DataInput.css';
+import './DataInput.css';
 import React, { useContext, type FC } from 'react';
 import { AppContext } from '../../api';
 import { type Entity } from '../../types';
@@ -43,6 +43,7 @@ const DateInput: FC<InputData> = ({ setter, ...props }) => (
     onChange={e => {
       setter(e.target.value);
     }}
+    max={new Date().toISOString().split('T')[0]}
     {...props}
   />
 );
@@ -121,8 +122,6 @@ export const DataInput: FC<DataInputProps> = ({
   ...inputData
 }) => {
   const InputComp = MAP_ID_TO_INPUT_COMP[type];
-
-  console.log('inputData', value);
 
   // const style = isError ? { border: '2px solid red' } : {};
 

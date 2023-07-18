@@ -21,3 +21,10 @@
   top: 15px;
   right: 15px;
 }
+
+.save-btn {
+  position: absolute;
+  bottom: 15px;
+  left: 15px;
+  font-size: 20px;
+}

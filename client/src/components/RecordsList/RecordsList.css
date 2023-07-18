@@ -17,4 +17,6 @@
   justify-content: center;
   width: 90%;
   scroll-behavior: smooth;
+  overflow: scroll;
+  padding-top: 80px;
 }

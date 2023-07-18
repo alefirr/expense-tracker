@@ -4,9 +4,7 @@ import { MainPage } from './components';
 import { ENTITIES } from './constants';
 
 const App = () => {
-  const [context, setContext] = React.useState({ mapById: {} });
-
-  useEffect(() => {
+  const updateAllData = () => {
     ENTITIES.forEach(entity => {
       getData(entity).then(data => {
         setContext(prev => {
@@ -29,6 +27,12 @@ const App = () => {
         });
       });
     });
+  };
+
+  const [context, setContext] = React.useState({ mapById: {}, updateAllData });
+
+  useEffect(() => {
+    updateAllData();
   }, []);
 
   return (

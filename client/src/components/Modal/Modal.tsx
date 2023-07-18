@@ -1,7 +1,7 @@
 import React, { useContext, useEffect } from 'react';
 import './Modal.css';
 import { type Entity } from '../../types';
-import { AppContext } from '../../api';
+import { AppContext, addData, updateData } from '../../api';
 import { INPUTS } from '../../constants';
 import { DataInput } from './DataInput';
 
@@ -15,10 +15,13 @@ export const Modal: React.FC<Props> = ({ entity, closeModal, inEditId }) => {
   const context = useContext(AppContext);
 
   const [data, setData] = React.useState({});
+  const [isLoading, setIsLoading] = React.useState(false);
 
   useEffect(() => {
     if (entity && inEditId) {
       setData(context.mapById[entity]?.[inEditId]);
+    } else {
+      setData({});
     }
   }, [inEditId, entity, context.mapById]);
 
@@ -26,7 +29,17 @@ export const Modal: React.FC<Props> = ({ entity, closeModal, inEditId }) => {
     return null;
   }
 
-  const close = () => {
+  const onSave = async () => {
+    setIsLoading(true);
+
+    if (inEditId) {
+      await updateData(entity, inEditId, data);
+    } else {
+      await addData(entity, data);
+    }
+    setIsLoading(false);
+
+    context.updateAllData?.();
     closeModal();
   };
 
@@ -37,7 +50,7 @@ export const Modal: React.FC<Props> = ({ entity, closeModal, inEditId }) => {
           <h2>
             {inEditId ? 'Edit' : 'Add'} {entity}
           </h2>
-          <button className="close-btn" onClick={close}>
+          <button className="close-btn" onClick={closeModal}>
             X
           </button>
           <div className="inputs">
@@ -52,6 +65,9 @@ export const Modal: React.FC<Props> = ({ entity, closeModal, inEditId }) => {
               />
             ))}
           </div>
+          <button className="save-btn" onClick={onSave} disabled={isLoading}>
+            {isLoading ? 'Loading...' : inEditId ? 'Save' : 'Add'}
+          </button>
         </div>
       </div>
     </div>

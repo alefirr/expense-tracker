@@ -1,0 +1,16 @@
+.input {
+  margin: 20px 0;
+}
+
+label {
+  display: block;
+  margin-bottom: 5px;
+  font-weight: 700;
+}
+
+input {
+  padding: 8px;
+  font-size: 16px;
+  border: 1px solid hsl(0, 0%, 70%);
+  border-radius: 3px;
+}
