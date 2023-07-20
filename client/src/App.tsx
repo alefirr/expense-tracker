@@ -30,7 +30,11 @@ const App = () => {
     });
   };
 
-  const [context, setContext] = React.useState({ mapById: {}, updateAllData });
+  const [context, setContext] = React.useState({
+    mapById: {},
+    updateAllData,
+    currentCurrency: 'CAD',
+  });
 
   useEffect(() => {
     updateAllData();
@@ -38,7 +42,7 @@ const App = () => {
 
   return (
     <AppContext.Provider value={context}>
-      <MainPage />
+      <MainPage setContext={setContext} />
     </AppContext.Provider>
   );
 };

@@ -33,9 +33,13 @@ const deleteData = (entity: Entity, id: string) =>
 
 type AppContextType = Partial<Record<Entity, Array<Record<string, any>>>> & {
   mapById: Partial<Record<string, any>>;
+  currentCurrency: string;
   updateAllData?: () => void;
 };
 
-const AppContext = createContext<AppContextType>({ mapById: {} });
+const AppContext = createContext<AppContextType>({
+  mapById: {},
+  currentCurrency: 'CAD',
+});
 
 export { addData, updateData, getData, deleteData, AppContext };

@@ -23,3 +23,15 @@ export const INPUTS: Record<Entity, Input[]> = {
   [Entity.User]: DEFAULT_INPUTS,
   [Entity.Place]: DEFAULT_INPUTS,
 };
+
+export const CURRENCIES: string[] = [
+  'USD',
+  'UAH',
+  'EUR',
+  'PLN',
+  'GBP',
+  'HUF',
+  'TRY',
+  'CZK',
+  'CAD',
+];
