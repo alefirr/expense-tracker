@@ -10,7 +10,8 @@ interface InputData {
   max?: number;
   min?: number;
   style?: any;
-  id?: string;
+  id: string;
+  options?: Array<{ value: string; label: string }>;
 }
 
 const TextInput: FC<InputData> = ({ setter, max, value = '', ...props }) => (
@@ -64,13 +65,22 @@ const TextAreaInput: FC<InputData> = ({
   />
 );
 
-const SelectInput: FC<InputData> = ({ id, value, setter, style, ...props }) => {
+const SelectInput: FC<InputData> = ({
+  id,
+  value,
+  setter,
+  style,
+  options,
+  ...props
+}) => {
   const context = useContext(AppContext);
 
-  const optionsList = context[id as Entity]?.map(({ _id, name }) => ({
-    value: _id,
-    label: name,
-  }));
+  const optionsList =
+    options ||
+    context[id as Entity]?.map(({ _id, name }) => ({
+      value: _id,
+      label: name,
+    }));
 
   return (
     <Select
@@ -107,6 +117,7 @@ export interface DataInputProps {
   label?: string;
   value: string | number;
   setData: (data: any) => void;
+  options?: Array<{ value: string; label: string }>;
   // removeError: () => void;
   // isError: boolean;
 }
