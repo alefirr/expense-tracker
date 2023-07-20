@@ -4,5 +4,6 @@
   border-radius: 40px;
   border: 5px solid rgba(111, 16, 235, 0.333);
   padding: 30px;
+  margin: 20px;
   box-sizing: border-box;
 }
