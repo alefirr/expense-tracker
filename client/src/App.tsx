@@ -2,6 +2,7 @@ import React, { useEffect } from 'react';
 import { AppContext, getData } from './api';
 import { MainPage } from './components';
 import { ENTITIES } from './constants';
+import './App.css';
 
 const App = () => {
   const updateAllData = () => {

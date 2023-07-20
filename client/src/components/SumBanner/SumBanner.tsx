@@ -1,11 +1,18 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import './SumBanner.css';
+import { AppContext } from '../../api';
 
 export const SumBanner = () => {
+  const { record: records } = useContext(AppContext);
+  const total: number | undefined = records?.reduce(
+    (acc, item) => acc + +item.sum,
+    0
+  );
+
   return (
     <div className="sum-banner">
       <h2>Total</h2>
-      <h1>$0.00</h1>
+      <h1>{total}$</h1>
     </div>
   );
 };
