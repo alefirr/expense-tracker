@@ -4,14 +4,14 @@ import { AppContext } from '../../api';
 
 interface Props {
   record: Record<string, any>;
-  onClick: () => void;
+  onEditClick: () => void;
 }
 
-export const Record: React.FC<Props> = ({ record, onClick }) => {
+export const Record: React.FC<Props> = ({ record, onEditClick }) => {
   const context = useContext(AppContext);
 
   return (
-    <div className="record" onClick={onClick}>
+    <div className="record">
       <b>{record.name}</b>
       <div className="price">$ {record.sum}</div>
       <ul>
@@ -20,7 +20,9 @@ export const Record: React.FC<Props> = ({ record, onClick }) => {
         <li>👱🏻 {context.mapById.user?.[record.user].name}</li>
         <li>📍 {context.mapById.place?.[record.place].name}</li>
       </ul>
-      <button className="edit">✏️ Edit</button>
+      <button className="edit" onClick={onEditClick}>
+        ✏️ Edit
+      </button>
       <button className="delete">🗑 Delete</button>
     </div>
   );

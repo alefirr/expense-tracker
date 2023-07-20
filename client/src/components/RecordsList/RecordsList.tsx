@@ -19,7 +19,7 @@ export const RecordsList = () => {
           <Record
             key={record._id}
             record={record}
-            onClick={() => {
+            onEditClick={() => {
               setRecordInEdit(record._id);
             }}
           />
