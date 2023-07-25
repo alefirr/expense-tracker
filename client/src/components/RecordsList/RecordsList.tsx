@@ -2,12 +2,12 @@ import React, { useContext } from 'react';
 import './RecordsList.css';
 import { SumBanner } from '../SumBanner';
 import { Record } from '../Record/Record';
-import { AppContext } from '../../api';
+import { AppContext, deleteData } from '../../api';
 import { Modal } from '../Modal';
 import { Entity } from '../../types';
 
 export const RecordsList = () => {
-  const { record: records } = useContext(AppContext);
+  const { record: records, updateAllData } = useContext(AppContext);
 
   const [recordInEdit, setRecordInEdit] = React.useState<string | null>(null);
 
@@ -21,6 +21,10 @@ export const RecordsList = () => {
             record={record}
             onEditClick={() => {
               setRecordInEdit(record._id);
+            }}
+            onDeleteClick={async () => {
+              await deleteData(Entity.Record, record._id);
+              updateAllData?.();
             }}
           />
         ))}

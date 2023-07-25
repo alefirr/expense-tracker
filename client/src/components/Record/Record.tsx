@@ -5,9 +5,14 @@ import { AppContext } from '../../api';
 interface Props {
   record: Record<string, any>;
   onEditClick: () => void;
+  onDeleteClick: () => void;
 }
 
-export const Record: React.FC<Props> = ({ record, onEditClick }) => {
+export const Record: React.FC<Props> = ({
+  record,
+  onEditClick,
+  onDeleteClick,
+}) => {
   const context = useContext(AppContext);
 
   return (
@@ -23,7 +28,9 @@ export const Record: React.FC<Props> = ({ record, onEditClick }) => {
       <button className="edit" onClick={onEditClick}>
         ✏️ Edit
       </button>
-      <button className="delete">🗑 Delete</button>
+      <button className="delete" onClick={onDeleteClick}>
+        🗑 Delete
+      </button>
     </div>
   );
 };
