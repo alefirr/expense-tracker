@@ -34,6 +34,7 @@ const App = () => {
     mapById: {},
     updateAllData,
     currentCurrency: 'CAD',
+    currentUserId: '',
   });
 
   useEffect(() => {

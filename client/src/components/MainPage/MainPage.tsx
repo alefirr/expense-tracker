@@ -25,7 +25,7 @@ export const MainPage: React.FC<MainPageProps> = ({ setContext }) => {
   return (
     <div className="main-page-container">
       <div className="control-statistics-container">
-        <Statistics />
+        <Statistics setContext={setContext} />
         <ControlBar openModal={setCurrentModal} />
       </div>
       <RecordsList />

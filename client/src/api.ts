@@ -34,12 +34,14 @@ const deleteData = (entity: Entity, id: string) =>
 type AppContextType = Partial<Record<Entity, Array<Record<string, any>>>> & {
   mapById: Partial<Record<string, any>>;
   currentCurrency: string;
+  currentUserId: string;
   updateAllData?: () => void;
 };
 
 const AppContext = createContext<AppContextType>({
   mapById: {},
   currentCurrency: 'CAD',
+  currentUserId: '',
 });
 
 export { addData, updateData, getData, deleteData, AppContext };

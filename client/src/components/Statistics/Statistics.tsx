@@ -1,19 +1,20 @@
-import React, { useContext, useState, useMemo } from 'react';
+import React, { useContext, useMemo } from 'react';
 import { PieChart, Pie, Tooltip, ResponsiveContainer } from 'recharts';
 import './Statistics.css';
 import { AppContext } from '../../api';
 import { DataInput } from '../Modal/DataInput';
 
-export const Statistics = () => {
+interface StatisticsProps {
+  setContext: (context: any) => void;
+}
+
+export const Statistics: React.FC<StatisticsProps> = ({ setContext }) => {
   const context = useContext(AppContext);
-  const [currentUser, setCurrentUser] = useState<{ userId: string }>({
-    userId: '6450a7236e08d359fd2accf4',
-  });
+  const currentUserId = context.currentUserId;
 
   const getDataByCurrentUser = () => {
-    console.log('getDataByCurrentUser');
     return context.record
-      ?.filter(record => record.user === currentUser.userId)
+      ?.filter(record => record.user === currentUserId)
       .map(record => ({
         name: context.mapById.category[record.category].name,
         value: record.sum,
@@ -22,7 +23,7 @@ export const Statistics = () => {
 
   const data = useMemo(() => {
     return getDataByCurrentUser();
-  }, [currentUser]);
+  }, [currentUserId]);
 
   return (
     <div className="statistics-container">
@@ -44,14 +45,16 @@ export const Statistics = () => {
         </PieChart>
       </ResponsiveContainer>
       <DataInput
-        id="userId"
+        id="currentUserId"
         type="select"
-        value={currentUser.userId}
-        setData={setCurrentUser}
-        options={context.user?.map(user => ({
-          value: user._id,
-          label: user.name,
-        }))}
+        value={currentUserId}
+        setData={setContext}
+        options={
+          context.user?.map(({ _id, name }) => ({
+            value: _id,
+            label: name,
+          })) || []
+        }
       />
     </div>
   );
