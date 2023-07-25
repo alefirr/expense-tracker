@@ -3,11 +3,11 @@ import './SumBanner.css';
 import { AppContext } from '../../api';
 
 export const SumBanner = () => {
-  const { record: records } = useContext(AppContext);
-  const total: number | undefined = records?.reduce(
-    (acc, item) => acc + +item.sum,
-    0
-  );
+  const { record: records, currentUserId } = useContext(AppContext);
+
+  const total: number | undefined = records
+    ?.filter(record => record.user === currentUserId)
+    .reduce((acc, item) => acc + +item.sum, 0);
 
   return (
     <div className="sum-banner">
